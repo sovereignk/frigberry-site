@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Frigberry — Mor Orman'dan, doğal soğukta</title>
+<meta name="description" content="Frigberry: kendi bahçemizde yetişen aronyaları dalından toplayıp anında dondurarak sofranıza taşıyoruz.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --frost: #eef3ee;
+    --frost-deep: #dfe8e0;
+    --plum: #3d1a3a;
+    --plum-deep: #2a1027;
+    --berry: #7a2e63;
+    --forest: #33513f;
+    --ink: #211a22;
+    --paper: #faf9f6;
+  }
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Work Sans', sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+  }
+  h1,h2,h3{
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    margin: 0 0 .4em;
+    letter-spacing: -0.01em;
+  }
+  a{ color: inherit; }
+  img{ max-width:100%; display:block; }
+  .wrap{ max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+
+  header{
+    position: sticky; top:0; z-index: 10;
+    background: rgba(250,249,246,.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(61,26,58,.08);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height: 76px;
+  }
+  .brand{
+    display:flex; align-items:center; gap:12px;
+    font-family:'Fraunces', serif; font-weight:600; font-size:1.25rem;
+    color: var(--plum-deep); text-decoration:none;
+  }
+  .badge{
+    width:40px; height:40px; border-radius:50%;
+    background: radial-gradient(circle at 32% 28%, var(--berry), var(--plum) 70%);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow: 0 2px 6px rgba(61,26,58,.35);
+  }
+  .badge svg{ width:20px; height:20px; }
+  nav ul{
+    list-style:none; display:flex; gap: 32px; margin:0; padding:0;
+    font-size:.95rem;
+  }
+  nav ul a{ text-decoration:none; color: var(--ink); }
+  nav ul a:hover{ color: var(--berry); }
+  .nav-cta{
+    background: var(--plum); color:#fff !important;
+    padding: 10px 20px; border-radius: 3px;
+    font-size:.92rem;
+  }
+  .nav-cta:hover{ background: var(--berry); }
+
+  .hero{
+    padding: 88px 0 96px;
+    background:
+      radial-gradient(700px 380px at 82% -10%, rgba(122,46,99,.16), transparent 60%),
+      linear-gradient(180deg, var(--frost) 0%, var(--paper) 100%);
+    border-bottom: 1px solid rgba(61,26,58,.08);
+  }
+  .hero .wrap{
+    display:grid; grid-template-columns: 1.1fr .9fr; gap: 56px; align-items:center;
+  }
+  .eyebrow{
+    color: var(--forest); font-weight:600; font-size:.92rem;
+  }
+  .hero h1{
+    font-size: clamp(2.4rem, 4.2vw, 3.4rem);
+    line-height: 1.08;
+    color: var(--plum-deep);
+    margin-top: .5em;
+  }
+  .hero p.lead{
+    font-size:1.1rem; max-width: 46ch; margin: 22px 0 30px; color:#463b46;
+  }
+  .cta-row{ display:flex; gap:16px; flex-wrap:wrap; }
+  .btn{
+    display:inline-block; padding: 14px 26px; border-radius:3px;
+    text-decoration:none; font-weight:500; font-size:.98rem;
+    border: 1px solid transparent;
+  }
+  .btn-primary{ background: var(--plum); color:#fff; }
+  .btn-primary:hover{ background: var(--berry); }
+  .btn-ghost{ border-color: rgba(61,26,58,.35); color: var(--plum-deep); }
+  .btn-ghost:hover{ border-color: var(--plum); }
+
+  .hero-art{
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 25%, #5a2350, var(--plum-deep) 65%);
+    position: relative;
+    box-shadow: 0 30px 60px -20px rgba(42,16,39,.45);
+    display:flex; align-items:center; justify-content:center;
+    overflow:hidden;
+  }
+  .hero-art .frost-ring{
+    position:absolute; inset:14px; border-radius:50%;
+    border: 1px dashed rgba(255,255,255,.25);
+  }
+  .hero-art svg{ width:56%; height:56%; }
+
+  .stats{
+    background: var(--plum-deep); color: #f2e9f0;
+  }
+  .stats .wrap{
+    display:grid; grid-template-columns: repeat(3,1fr);
+    padding: 34px 28px; gap: 24px; text-align:center;
+  }
+  .stats .num{
+    font-family:'Fraunces', serif; font-size:2rem; color:#e8c9de;
+  }
+  .stats .lbl{ font-size:.85rem; opacity:.8; margin-top:4px; }
+
+  section{ padding: 88px 0; }
+  .section-head{ max-width: 640px; margin-bottom: 46px; }
+  .section-head .eyebrow{ margin-bottom: 10px; display:block; }
+  .section-head h2{ font-size: clamp(1.8rem, 3vw, 2.3rem); color: var(--plum-deep); }
+  .section-head p{ color:#463b46; font-size:1.05rem; }
+
+  .about .wrap{
+    display:grid; grid-template-columns: .85fr 1.15fr; gap:56px; align-items:start;
+  }
+  .about-visual{
+    background: var(--frost-deep);
+    border-radius: 6px;
+    aspect-ratio: 4/5;
+    display:flex; align-items:center; justify-content:center;
+    position:relative;
+  }
+  .about-visual svg{ width:60%; }
+  .fact-list{ list-style:none; margin: 0; padding:0; }
+  .fact-list li{
+    display:grid; grid-template-columns: 90px 1fr; gap:20px;
+    padding: 20px 0; border-top: 1px solid rgba(61,26,58,.12);
+  }
+  .fact-list li:last-child{ border-bottom: 1px solid rgba(61,26,58,.12); }
+  .fact-list .fact-num{ font-family:'Fraunces', serif; color: var(--berry); font-size:1.15rem; }
+  .fact-list h3{ font-size:1.05rem; margin-bottom:.25em; }
+  .fact-list p{ margin:0; color:#463b46; font-size:.98rem; }
+
+  .product{ background: var(--frost); }
+  .product-grid{
+    display:grid; grid-template-columns: repeat(3, 1fr); gap: 28px;
+  }
+  .product-card{
+    background: var(--paper); border-radius:6px; padding: 30px 26px;
+    border: 1px solid rgba(61,26,58,.1);
+  }
+  .product-card .dot{
+    width:14px; height:14px; border-radius:50%;
+    background: var(--berry); margin-bottom: 18px;
+  }
+  .product-card h3{ font-size:1.15rem; margin-bottom:.4em; color: var(--plum-deep); }
+  .product-card p{ color:#463b46; font-size:.97rem; margin:0; }
+
+  .contact{
+    background: var(--plum-deep); color:#f2e9f0;
+  }
+  .contact .wrap{
+    display:grid; grid-template-columns: 1.1fr .9fr; gap:56px; align-items:center;
+  }
+  .contact h2{ color:#fff; font-size: clamp(1.8rem,3vw,2.3rem); }
+  .contact p{ color:#d9c6d4; font-size:1.05rem; max-width:48ch; }
+  .contact-box{
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.14);
+    border-radius:6px; padding: 32px;
+  }
+  .contact-box .row{
+    display:flex; justify-content:space-between; padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,.12); font-size:.98rem;
+  }
+  .contact-box .row:last-child{ border-bottom:none; }
+  .contact-box .row span:first-child{ color:#c9a9c2; }
+  .contact-box a{ text-decoration:none; color:#fff; }
+  .contact-box a:hover{ color:#e8c9de; }
+
+  footer{
+    padding: 30px 0; background: var(--plum-deep);
+    border-top: 1px solid rgba(255,255,255,.1);
+  }
+  footer .wrap{
+    display:flex; justify-content:space-between; align-items:center;
+    color:#c9a9c2; font-size:.85rem; flex-wrap:wrap; gap:10px;
+  }
+
+  @media (max-width: 860px){
+    .hero .wrap, .about .wrap, .contact .wrap{ grid-template-columns: 1fr; }
+    .hero-art{ max-width:300px; margin: 0 auto; }
+    .product-grid{ grid-template-columns: 1fr; }
+    .stats .wrap{ grid-template-columns: 1fr; }
+    nav ul{ display:none; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a href="#top" class="brand">
+      <span class="badge">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 2C9 6 6 9 6 13a6 6 0 0 0 12 0c0-4-3-7-6-11Z" fill="#f2e9f0"/></svg>
+      </span>
+      Frigberry
+    </a>
+    <ul>
+      <li><a href="#aronya">Aronya</a></li>
+      <li><a href="#urun">Ürün</a></li>
+      <li><a href="#iletisim">İletişim</a></li>
+    </ul>
+    <a href="#iletisim" class="nav-cta">Sipariş İçin Yazın</a>
+  </nav>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Mor Orman'dan sofranıza</span>
+      <h1>Dalından toplanır, anında dondurulur.</h1>
+      <p class="lead">Frigberry, kendi bahçemizde yetiştirdiğimiz aronyaları olgunluğun tam anında hasat edip aynı gün donduruyor; kışın da yazın tazeliğini sofranıza taşıyor.</p>
+      <div class="cta-row">
+        <a href="#iletisim" class="btn btn-primary">Sipariş için iletişime geçin</a>
+        <a href="#aronya" class="btn btn-ghost">Aronya nedir?</a>
+      </div>
+    </div>
+    <div class="hero-art">
+      <div class="frost-ring"></div>
+      <svg viewBox="0 0 100 100" fill="none">
+        <g fill="#e8c9de">
+          <circle cx="34" cy="40" r="9"/>
+          <circle cx="54" cy="30" r="10"/>
+          <circle cx="70" cy="46" r="8"/>
+          <circle cx="44" cy="58" r="11"/>
+          <circle cx="64" cy="66" r="7"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="wrap">
+    <div>
+      <div class="num">~1.000</div>
+      <div class="lbl">aronya ağacı</div>
+    </div>
+    <div>
+      <div class="num">5 ton</div>
+      <div class="lbl">yıllık hasat</div>
+    </div>
+    <div>
+      <div class="num">%100</div>
+      <div class="lbl">kendi bahçemiz</div>
+    </div>
+  </div>
+</div>
+
+<section class="about" id="aronya">
+  <div class="wrap">
+    <div class="about-visual">
+      <svg viewBox="0 0 100 120" fill="none">
+        <path d="M50 8c-16 20-30 34-30 54a30 30 0 0 0 60 0c0-20-14-34-30-54Z" fill="#7a2e63"/>
+        <path d="M50 8c-4 6-8 11-11 16 6 10 11 22 11 34 0-12 5-24 11-34-3-5-7-10-11-16Z" fill="#3d1a3a"/>
+      </svg>
+    </div>
+    <div>
+      <div class="section-head">
+        <span class="eyebrow">Aronya nedir?</span>
+        <h2>Kuzey Amerika kökenli, Türkiye'de yeşeren bir "süper meyve"</h2>
+        <p>Chokeberry olarak da bilinen aronya, yüksek antioksidan ve antosiyanin içeriğiyle tanınır. Frigberry'de bu meyveyi kendi topraklarımızda, ilaçsız ve sürdürülebilir yöntemlerle yetiştiriyoruz.</p>
+      </div>
+      <ul class="fact-list">
+        <li>
+          <span class="fact-num">01</span>
+          <div>
+            <h3>Dalından anında dondurma</h3>
+            <p>Meyveler tam olgunluğunda toplanır ve besin değerini korumak için aynı gün flaş dondurulur.</p>
+          </div>
+        </li>
+        <li>
+          <span class="fact-num">02</span>
+          <div>
+            <h3>Yüksek antioksidan</h3>
+            <p>C vitamini, B, E vitamini ve yüksek oranda antosiyanin içerir; günlük beslenmeye doğal bir destektir.</p>
+          </div>
+        </li>
+        <li>
+          <span class="fact-num">03</span>
+          <div>
+            <h3>Katkısız, sade üretim</h3>
+            <p>Şeker, koruyucu ya da katkı maddesi yok — sadece aronya, doğal halinde.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="product" id="urun">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Ürünlerimiz</span>
+      <h2>Bahçeden dondurucuya, dondurucudan mutfağınıza</h2>
+      <p>Şu an için tek ürünümüz var: doğru şekilde yetiştirilmiş, doğru anda dondurulmuş aronya.</p>
+    </div>
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="dot"></div>
+        <h3>Dondurulmuş Aronya — 500 g</h3>
+        <p>Smoothie, kompostoya veya kahvaltı sofralarına uygun küçük paket.</p>
+      </div>
+      <div class="product-card">
+        <div class="dot"></div>
+        <h3>Dondurulmuş Aronya — 1 kg</h3>
+        <p>Düzenli tüketenler için en çok tercih edilen aile boyu paket.</p>
+      </div>
+      <div class="product-card">
+        <div class="dot"></div>
+        <h3>Toptan ve Kurumsal</h3>
+        <p>Kafe, restoran ve üretici işletmeler için hacimli sipariş seçenekleri.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="iletisim">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow" style="color:#e8c9de;">İletişim</span>
+      <h2>Sormak ya da sipariş vermek için yazın</h2>
+      <p>Hasat dönemi ve stok durumu hakkında bilgi almak, ya da toptan sipariş için bize ulaşabilirsiniz.</p>
+    </div>
+    <div class="contact-box">
+      <div class="row"><span>E-posta</span><a href="mailto:merhaba@frigberry.com">merhaba@frigberry.com</a></div>
+      <div class="row"><span>Konum</span><span>Türkiye</span></div>
+      <div class="row"><span>Hasat sezonu</span><span>Ağustos – Ekim</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Frigberry. Tüm hakları saklıdır.</span>
+    <span>Mor Orman'dan, doğal soğukta.</span>
+  </div>
+</footer>
+
+</body>
+</html>
