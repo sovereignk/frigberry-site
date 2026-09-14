@@ -205,11 +205,41 @@
   }
 
   @media (max-width: 860px){
+    header nav.wrap{
+      height:auto;
+      min-height:76px;
+      flex-wrap:wrap;
+      padding-top:12px;
+      padding-bottom:0;
+    }
+    .brand{ flex:1; }
+    .nav-cta{ white-space:nowrap; }
+    nav ul{
+      display:flex;
+      order:3;
+      width:100%;
+      gap:24px;
+      overflow-x:auto;
+      white-space:nowrap;
+      margin-top:12px;
+      padding:12px 0 14px;
+      border-top:1px solid rgba(61,26,58,.08);
+      scrollbar-width:none;
+      -webkit-overflow-scrolling:touch;
+    }
+    nav ul::-webkit-scrollbar{ display:none; }
+    nav ul li{ flex:0 0 auto; }
+    nav ul a{ font-size:.88rem; }
     .hero .wrap, .about .wrap, .contact .wrap{ grid-template-columns: 1fr; }
     .hero-art{ max-width:300px; margin: 0 auto; }
     .product-grid{ grid-template-columns: 1fr; }
     .stats .wrap{ grid-template-columns: 1fr; }
-    nav ul{ display:none; }
+  }
+  @media (max-width: 480px){
+    .wrap{ padding-left:18px; padding-right:18px; }
+    .brand{ font-size:1.1rem; gap:8px; }
+    .badge{ width:40px; height:40px; }
+    .nav-cta{ padding:9px 13px; font-size:.82rem; }
   }
   @media (prefers-reduced-motion: reduce){
     html{ scroll-behavior:auto; }
@@ -217,7 +247,6 @@
 </style>
 </head>
 <body>
-
 <header>
   <nav class="wrap">
     <a href="#top" class="brand">
@@ -252,18 +281,9 @@
 
 <div class="stats">
   <div class="wrap">
-    <div>
-      <div class="num">~1.000</div>
-      <div class="lbl">aronya ağacı</div>
-    </div>
-    <div>
-      <div class="num">5 ton</div>
-      <div class="lbl">yıllık hasat</div>
-    </div>
-    <div>
-      <div class="num">%100</div>
-      <div class="lbl">kendi bahçemiz</div>
-    </div>
+    <div><div class="num">~1.000</div><div class="lbl">aronya ağacı</div></div>
+    <div><div class="num">5 ton</div><div class="lbl">yıllık hasat</div></div>
+    <div><div class="num">%100</div><div class="lbl">kendi bahçemiz</div></div>
   </div>
 </div>
 
@@ -282,27 +302,9 @@
         <p>Chokeberry olarak da bilinen aronya, yüksek antioksidan ve antosiyanin içeriğiyle tanınır. Frigberry'de bu meyveyi kendi topraklarımızda, ilaçsız ve sürdürülebilir yöntemlerle yetiştiriyoruz.</p>
       </div>
       <ul class="fact-list">
-        <li>
-          <span class="fact-num">01</span>
-          <div>
-            <h3>Dalından anında dondurma</h3>
-            <p>Meyveler tam olgunluğunda toplanır ve besin değerini korumak için aynı gün flaş dondurulur.</p>
-          </div>
-        </li>
-        <li>
-          <span class="fact-num">02</span>
-          <div>
-            <h3>Yüksek antioksidan</h3>
-            <p>C vitamini, B, E vitamini ve yüksek oranda antosiyanin içerir; günlük beslenmeye doğal bir destektir.</p>
-          </div>
-        </li>
-        <li>
-          <span class="fact-num">03</span>
-          <div>
-            <h3>Katkısız, sade üretim</h3>
-            <p>Şeker, koruyucu ya da katkı maddesi yok — sadece aronya, doğal halinde.</p>
-          </div>
-        </li>
+        <li><span class="fact-num">01</span><div><h3>Dalından anında dondurma</h3><p>Meyveler tam olgunluğunda toplanır ve besin değerini korumak için aynı gün flaş dondurulur.</p></div></li>
+        <li><span class="fact-num">02</span><div><h3>Yüksek antioksidan</h3><p>C vitamini, B, E vitamini ve yüksek oranda antosiyanin içerir; günlük beslenmeye doğal bir destektir.</p></div></li>
+        <li><span class="fact-num">03</span><div><h3>Katkısız, sade üretim</h3><p>Şeker, koruyucu ya da katkı maddesi yok — sadece aronya, doğal halinde.</p></div></li>
       </ul>
     </div>
   </div>
@@ -316,21 +318,9 @@
       <p>Aronyayı taze, şoklanarak dondurulmuş veya dondurularak kurutulmuş (freeze dried) seçenekleriyle sunuyoruz.</p>
     </div>
     <div class="product-grid">
-      <div class="product-card">
-        <div class="dot"></div>
-        <h3>Taze Aronya</h3>
-        <p>Uzun raf ömrü için sapıyla toplanmış taze aronya.</p>
-      </div>
-      <div class="product-card">
-        <div class="dot"></div>
-        <h3>Şoklanarak Dondurulmuş Aronya</h3>
-        <p>-30 °C'de şoklanarak dondurulmuş, -18 °C'de muhafaza edilen sapsız aronya.</p>
-      </div>
-      <div class="product-card">
-        <div class="dot"></div>
-        <h3>Dondurularak Kurutulmuş (Freeze Dried) Aronya</h3>
-        <p>Sapsız tane veya toz halinde.</p>
-      </div>
+      <div class="product-card"><div class="dot"></div><h3>Taze Aronya</h3><p>Uzun raf ömrü için sapıyla toplanmış taze aronya.</p></div>
+      <div class="product-card"><div class="dot"></div><h3>Şoklanarak Dondurulmuş Aronya</h3><p>-30 °C'de şoklanarak dondurulmuş, -18 °C'de muhafaza edilen sapsız aronya.</p></div>
+      <div class="product-card"><div class="dot"></div><h3>Dondurularak Kurutulmuş (Freeze Dried) Aronya</h3><p>Sapsız tane veya toz halinde.</p></div>
     </div>
   </div>
 </section>
@@ -356,6 +346,5 @@
     <span>Akkaya Eskişehir'deki bahçemizden sofranıza.</span>
   </div>
 </footer>
-
 </body>
 </html>
