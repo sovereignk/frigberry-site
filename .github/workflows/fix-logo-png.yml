@@ -12,7 +12,13 @@ jobs:
         with:
           ref: logo-png-fix
       - name: Convert WebP to PNG
-        run: ffmpeg -y -i frigberry-logo.webp frigberry-logo.png
+        run: |
+          python -m pip install pillow
+          python - <<'PY'
+          from PIL import Image
+          im = Image.open('frigberry-logo.webp').convert('RGBA')
+          im.save('frigberry-logo.png', optimize=True)
+          PY
       - name: Replace embedded/external logo references
         run: |
           python - <<'PY'
@@ -21,9 +27,7 @@ jobs:
           files = [Path('index.html'), Path('bilim.html'), Path('dunyadansagliklireceteler.html')]
           for p in files:
               s = p.read_text(encoding='utf-8')
-              # Replace embedded image data URIs used for Frigberry logos.
               s = re.sub(r'src="data:image/[^;]+;base64,[^"]+"', 'src="/frigberry-logo.png"', s)
-              # Replace previous external WebP references.
               s = s.replace('src="frigberry-logo.webp"', 'src="/frigberry-logo.png"')
               s = s.replace('src="/frigberry-logo.webp"', 'src="/frigberry-logo.png"')
               p.write_text(s, encoding='utf-8')
