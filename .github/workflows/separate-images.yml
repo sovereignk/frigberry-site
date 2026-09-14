@@ -1,1 +1,38 @@
-name: placeholder
+name: Separate Frigberry nav and hero images
+on:
+  push:
+    branches: [separate-logo-hero]
+permissions:
+  contents: write
+jobs:
+  update-images:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: separate-logo-hero
+      - name: Update image references
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          files = [Path('index.html'), Path('bilim.html'), Path('dunyadansagliklireceteler.html')]
+          for p in files:
+              s = p.read_text(encoding='utf-8')
+              s = re.sub(r'(<span class="badge"><img src=")[^"]+(" alt="Frigberry")', r'\1/frigberry-nav.webp\2', s)
+              p.write_text(s, encoding='utf-8')
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+          s = re.sub(r'(<div class="hero-art"><img src=")[^"]+(" alt="Frigberry logo")', r'\1/frigberry-hero.webp\2', s)
+          p.write_text(s, encoding='utf-8')
+          PY
+      - name: Clean temporary files
+        run: |
+          rm -f .github/workflows/separate-images.yml README.tmp
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Use separate nav logo and hero image"
+          git push origin HEAD:separate-logo-hero
