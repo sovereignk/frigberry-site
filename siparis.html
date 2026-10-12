@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Frigberry aronya siparişinizi oluşturun, teslimat bilgilerinizi WhatsApp üzerinden bize iletin.">
+  <meta name="referrer" content="no-referrer">
+  <title>Sipariş Ver | Frigberry</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{color-scheme:light;--plum:#3d1a3a;--berry:#7a2e63;--ink:#211a22;--muted:#645a65;--paper:#faf9f6;--forest:#33513f}
+    *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 'Work Sans',Arial,sans-serif}a{color:var(--plum)}
+    header{border-bottom:1px solid #3d1a3a16;background:var(--paper)}nav{max-width:1080px;margin:auto;padding:16px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font:600 24px 'Fraunces',Georgia,serif}.brand img{width:44px;height:44px;object-fit:contain;border-radius:50%}.home{font-size:14px;text-underline-offset:4px}
+    main{max-width:1080px;margin:auto;padding:64px 28px 80px;display:grid;grid-template-columns:.85fr 1.15fr;gap:70px;align-items:start}
+    .eyebrow{font-size:13px;letter-spacing:.1em;font-weight:600;color:var(--forest);text-transform:uppercase}h1{font:500 clamp(38px,5vw,56px)/1.12 'Fraunces',Georgia,serif;color:var(--plum);margin:18px 0 24px}p{margin:0 0 20px}.intro{font-size:18px;color:var(--muted)}.steps{margin:32px 0;padding-left:24px;color:var(--muted)}.steps li{padding:5px 0}.contact{padding-top:24px;border-top:1px solid #3d1a3a20;font-size:14px;color:var(--muted)}.contact a{font-weight:500}
+    .card{background:#fff;border:1px solid #3d1a3a1c;border-radius:12px;padding:32px;box-shadow:0 12px 40px #3d1a3a08}h2{font:500 26px 'Fraunces',Georgia,serif;color:var(--plum);margin:0 0 6px}.hint{font-size:13px;color:var(--muted);margin-bottom:24px}.fields{display:grid;grid-template-columns:1fr 1fr;gap:20px}.wide{grid-column:1/-1}label{display:block;font-weight:500;margin-bottom:7px;font-size:14px}.optional{font-size:12px;font-weight:400;color:var(--muted)}input,select{width:100%;min-height:50px;padding:12px 14px;border:1px solid #cfc7cf;border-radius:6px;background:white;color:var(--ink);font:inherit}input::placeholder{color:#817783}input:focus-visible,select:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid #7a2e6360;outline-offset:3px}input:focus,select:focus{border-color:var(--berry)}.help{font-size:12px;color:var(--muted);margin:7px 0 0}
+    button{width:100%;margin-top:26px;min-height:54px;padding:14px;border:0;border-radius:6px;background:var(--plum);color:white;font:600 16px 'Work Sans',Arial,sans-serif;cursor:pointer}button:hover{background:var(--berry)}.note{font-size:13px;line-height:1.6;color:var(--muted);margin:14px 0 0;text-align:center}.error{color:#a32132;font-size:14px;margin:16px 0 0}.error:empty{display:none}footer{border-top:1px solid #3d1a3a16;padding:24px;text-align:center;color:var(--muted);font-size:12px}
+    @media(max-width:760px){nav{padding:14px 20px}main{grid-template-columns:1fr;gap:24px;padding:34px 20px 48px}.intro{font-size:16px}.steps{margin:18px 0}.contact{display:none}h1{margin:12px 0 16px}.card{padding:24px}.brand{font-size:22px}}
+    @media(max-width:380px){.card{padding:20px}.fields{gap:16px;grid-template-columns:1fr}.wide{grid-column:auto}}
+  </style>
+</head>
+<body>
+  <header><nav aria-label="Ana gezinme"><a class="brand" href="/"><img src="/frigberry-logo.webp" alt="" width="44" height="44">Frigberry</a><a class="home" href="/">Ana sayfa</a></nav></header>
+  <main>
+    <section aria-labelledby="page-title">
+      <span class="eyebrow">Komşularımıza özel</span>
+      <h1 id="page-title">Aronya siparişiniz,<br>bir mesaj uzağınızda.</h1>
+      <p class="intro">Sipariş miktarınızı ve teslimat bilgilerinizi yazın, WhatsApp üzerinden bize iletin.</p>
+      <ol class="steps"><li>Sipariş bilgilerinizi doldurun.</li><li>Hazır mesajınızı WhatsApp'ta gönderin.</li><li>Teslimatı birlikte teyit edelim.</li></ol>
+      <p class="contact">Bize ulaşın<br><a href="https://wa.me/905335695755">0533 569 57 55</a></p>
+    </section>
+    <section class="card" aria-labelledby="form-title">
+      <h2 id="form-title">Sipariş bilgileri</h2>
+      <p class="hint">Teslimat saati dışındaki tüm alanlar zorunludur.</p>
+      <form id="order-form" action="https://wa.me/905335695755" method="get">
+        <div class="fields">
+          <div class="wide"><label for="quantity">Sipariş miktarı (kg)</label><input id="quantity" name="quantity" type="text" inputmode="decimal" placeholder="Örn. 2 veya 1,5" maxlength="12" required aria-describedby="quantity-help"><p class="help" id="quantity-help">Miktarı kilogram olarak yazın.</p></div>
+          <div><label for="block">Blok numarası</label><input id="block" name="block" type="text" placeholder="Örn. A veya 3" maxlength="40" required></div>
+          <div><label for="apartment">Daire numarası</label><input id="apartment" name="apartment" type="text" placeholder="Örn. 12" maxlength="20" required></div>
+          <div class="wide"><label for="phone">Telefon numarası</label><input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="05xx xxx xx xx" maxlength="25" required aria-describedby="phone-help"><p class="help" id="phone-help">Size ulaşabileceğimiz cep telefonu numarası.</p></div>
+          <div class="wide"><label for="delivery">Teslimat saati tercihi <span class="optional">(isteğe bağlı)</span></label><select id="delivery" name="delivery"><option value="Fark etmez">Fark etmez</option><option>08:00–10:00</option><option>10:00–12:00</option><option>12:00–14:00</option><option>14:00–16:00</option><option>16:00–18:00</option><option>18:00–20:00</option><option>20:00–22:00</option></select><p class="help">Teslimat saati WhatsApp üzerinden teyit edilecektir.</p></div>
+        </div>
+        <p id="form-error" class="error" role="alert"></p>
+        <button type="submit">WhatsApp’tan gönder</button>
+        <p class="note">WhatsApp açıldığında mesajı göndermek için <strong>Gönder</strong> düğmesine basın. Siparişiniz mesajı ilettiğinizde bize ulaşır.</p>
+        <noscript><p class="error">Formu kullanmak için JavaScript'i etkinleştirin veya <a href="https://wa.me/905335695755">WhatsApp üzerinden bize yazın.</a></p><style>button[type=submit]{display:none}</style></noscript>
+      </form>
+    </section>
+  </main>
+  <footer>Frigberry · Bahçemizden sofranıza.</footer>
+  <script>
+    'use strict';
+    const form = document.getElementById('order-form');
+    const quantity = document.getElementById('quantity');
+    const phone = document.getElementById('phone');
+    const error = document.getElementById('form-error');
+    form.addEventListener('input', (event) => { event.target.setCustomValidity(''); error.textContent = ''; });
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      error.textContent = '';
+      const amount = quantity.value.trim().replace(',', '.');
+      if (!/^\d+(?:\.\d{1,3})?$/.test(amount) || !Number.isFinite(Number(amount)) || Number(amount) <= 0) {
+        quantity.setCustomValidity('Lütfen sıfırdan büyük bir kilogram miktarı yazın. Örneğin: 2 veya 1,5.');
+        quantity.reportValidity(); return;
+      }
+      let digits = phone.value.replace(/[\s()+.-]/g, '');
+      if (digits.startsWith('0090')) digits = digits.slice(4);
+      else if (digits.startsWith('90')) digits = digits.slice(2);
+      else if (digits.startsWith('0')) digits = digits.slice(1);
+      if (!/^5\d{9}$/.test(digits)) {
+        phone.setCustomValidity('Lütfen geçerli bir cep telefonu numarası yazın. Örneğin: 0533 123 45 67.');
+        phone.reportValidity(); return;
+      }
+      const block = document.getElementById('block');
+      const apartment = document.getElementById('apartment');
+      for (const field of [block, apartment]) {
+        if (!field.value.trim()) { field.setCustomValidity('Lütfen bu alanı doldurun.'); field.reportValidity(); return; }
+      }
+      if (!form.reportValidity()) return;
+      const message = [
+        'Merhaba, Frigberry aronya siparişi vermek istiyorum.', '',
+        'Miktar: ' + Number(amount).toLocaleString('tr-TR', { maximumFractionDigits: 3 }) + ' kg',
+        'Blok: ' + block.value.trim(),
+        'Daire: ' + apartment.value.trim(),
+        'Telefon: 0' + digits,
+        'Teslimat saati tercihi: ' + document.getElementById('delivery').value
+      ].join('\n');
+      window.location.assign('https://wa.me/905335695755?text=' + encodeURIComponent(message));
+    });
+  </script>
+</body>
+</html>
