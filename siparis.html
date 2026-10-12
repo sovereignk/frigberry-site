@@ -36,7 +36,7 @@
       <p class="hint">Teslimat saati dışındaki tüm alanlar zorunludur.</p>
       <form id="order-form" action="https://wa.me/905335695755" method="get">
         <div class="fields">
-          <div class="wide"><label for="quantity">Sipariş miktarı (kg)</label><input id="quantity" name="quantity" type="text" inputmode="decimal" placeholder="Örn. 2 veya 1,5" maxlength="12" required aria-describedby="quantity-help"><p class="help" id="quantity-help">Minimum sipariş miktarı 1 kg’dır.</p></div>
+          <div class="wide"><label for="quantity">Sipariş miktarı (kg)</label><input id="quantity" name="quantity" type="text" inputmode="decimal" placeholder="Örn. 2 veya 1,5" maxlength="12" required aria-describedby="quantity-help"><p class="help" id="quantity-help">Minimum sipariş miktarı 1 kg’dır. Kilogram fiyatı: 300 TL.</p><p style="margin:14px 0 0;color:var(--plum);font-weight:600">Toplam tutar: <output id="order-total" for="quantity" aria-live="polite" aria-atomic="true">—</output></p></div>
           <div><label for="block">Blok numarası</label><input id="block" name="block" type="text" placeholder="Örn. A veya 3" maxlength="40" required></div>
           <div><label for="apartment">Daire numarası</label><input id="apartment" name="apartment" type="text" placeholder="Örn. 12" maxlength="20" required></div>
           <div class="wide"><label for="phone">Telefon numarası</label><input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="05xx xxx xx xx" maxlength="25" required aria-describedby="phone-help"><p class="help" id="phone-help">Size ulaşabileceğimiz cep telefonu numarası.</p></div>
@@ -57,6 +57,20 @@
     const quantity = document.getElementById('quantity');
     const phone = document.getElementById('phone');
     const error = document.getElementById('form-error');
+    const pricePerKg = 300;
+    const totalOutput = document.getElementById('order-total');
+    const formatPrice = (amount) => amount.toLocaleString('tr-TR', { maximumFractionDigits: 2 }) + ' TL';
+    const getAmount = () => {
+      const value = quantity.value.trim().replace(',', '.');
+      return /^\d+(?:\.\d{1,3})?$/.test(value) && Number.isFinite(Number(value)) && Number(value) >= 1 ? Number(value) : null;
+    };
+    const updateTotal = () => {
+      const amount = getAmount();
+      totalOutput.textContent = amount === null ? '—' : formatPrice(amount * pricePerKg);
+    };
+    quantity.addEventListener('input', updateTotal);
+    window.addEventListener('pageshow', updateTotal);
+    updateTotal();
     form.addEventListener('input', (event) => { event.target.setCustomValidity(''); error.textContent = ''; });
     form.addEventListener('submit', (event) => {
       event.preventDefault();
@@ -82,7 +96,7 @@
       if (!form.reportValidity()) return;
       const message = [
         'Merhaba, Frigberry aronya siparişi vermek istiyorum.', '',
-        'Miktar: ' + Number(amount).toLocaleString('tr-TR', { maximumFractionDigits: 3 }) + ' kg',
+        'Miktar: ' + Number(amount).toLocaleString('tr-TR', { maximumFractionDigits: 3 }) + ' kg — Toplam tutar: ' + formatPrice(Number(amount) * pricePerKg),
         'Blok: ' + block.value.trim(),
         'Daire: ' + apartment.value.trim(),
         'Telefon: 0' + digits,
