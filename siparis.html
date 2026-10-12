@@ -26,9 +26,8 @@
   <header><nav aria-label="Ana gezinme"><a class="brand" href="/"><img src="/frigberry-logo.webp" alt="" width="44" height="44">Frigberry</a><a class="home" href="/">Ana sayfa</a></nav></header>
   <main>
     <section aria-labelledby="page-title">
-      <span class="eyebrow">Komşularımıza özel</span>
-      <h1 id="page-title">Aronya siparişiniz,<br>bir mesaj uzağınızda.</h1>
-      <p class="intro">Sipariş miktarınızı ve teslimat bilgilerinizi yazın, WhatsApp üzerinden bize iletin.</p>
+      <span class="eyebrow">Kentplus Komşularımıza özel</span>
+      <h1 id="page-title">Aronya siparişleriniz<br>bir mesaj uzağınızda.</h1>
       <ol class="steps"><li>Sipariş bilgilerinizi doldurun.</li><li>Hazır mesajınızı WhatsApp'ta gönderin.</li><li>Teslimatı birlikte teyit edelim.</li></ol>
       <p class="contact">Bize ulaşın<br><a href="https://wa.me/905335695755">0533 569 57 55</a></p>
     </section>
@@ -37,11 +36,12 @@
       <p class="hint">Teslimat saati dışındaki tüm alanlar zorunludur.</p>
       <form id="order-form" action="https://wa.me/905335695755" method="get">
         <div class="fields">
-          <div class="wide"><label for="quantity">Sipariş miktarı (kg)</label><input id="quantity" name="quantity" type="text" inputmode="decimal" placeholder="Örn. 2 veya 1,5" maxlength="12" required aria-describedby="quantity-help"><p class="help" id="quantity-help">Miktarı kilogram olarak yazın.</p></div>
+          <div class="wide"><label for="quantity">Sipariş miktarı (kg)</label><input id="quantity" name="quantity" type="text" inputmode="decimal" placeholder="Örn. 2 veya 1,5" maxlength="12" required aria-describedby="quantity-help"><p class="help" id="quantity-help">Minimum sipariş miktarı 1 kg’dır.</p></div>
           <div><label for="block">Blok numarası</label><input id="block" name="block" type="text" placeholder="Örn. A veya 3" maxlength="40" required></div>
           <div><label for="apartment">Daire numarası</label><input id="apartment" name="apartment" type="text" placeholder="Örn. 12" maxlength="20" required></div>
           <div class="wide"><label for="phone">Telefon numarası</label><input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="05xx xxx xx xx" maxlength="25" required aria-describedby="phone-help"><p class="help" id="phone-help">Size ulaşabileceğimiz cep telefonu numarası.</p></div>
-          <div class="wide"><label for="delivery">Teslimat saati tercihi <span class="optional">(isteğe bağlı)</span></label><select id="delivery" name="delivery"><option value="Fark etmez">Fark etmez</option><option>08:00–10:00</option><option>10:00–12:00</option><option>12:00–14:00</option><option>14:00–16:00</option><option>16:00–18:00</option><option>18:00–20:00</option><option>20:00–22:00</option></select><p class="help">Teslimat saati WhatsApp üzerinden teyit edilecektir.</p></div>
+          <div class="wide"><label for="delivery-date">Teslim tarihi</label><select id="delivery-date" name="delivery-date" required><option value="" disabled selected>Tarih seçin</option><option value="19 Ekim 2026">19 Ekim</option><option value="20 Ekim 2026">20 Ekim</option><option value="21 Ekim 2026">21 Ekim</option><option value="22 Ekim 2026">22 Ekim</option><option value="23 Ekim 2026">23 Ekim</option><option value="24 Ekim 2026">24 Ekim</option></select></div>
+          <div class="wide"><label for="delivery">Teslimat saati tercihi <span class="optional">(isteğe bağlı)</span></label><select id="delivery" name="delivery"><option value="Fark etmez">Fark etmez</option><option>08:00–10:00</option><option>10:00–12:00</option><option>12:00–14:00</option><option>14:00–16:00</option><option>16:00–18:00</option><option>18:00–20:00</option><option>20:00–22:00</option></select><p class="help">Teslimat tarihi ve saati WhatsApp üzerinden teyit edilecektir.</p></div>
         </div>
         <p id="form-error" class="error" role="alert"></p>
         <button type="submit">WhatsApp’tan gönder</button>
@@ -62,8 +62,8 @@
       event.preventDefault();
       error.textContent = '';
       const amount = quantity.value.trim().replace(',', '.');
-      if (!/^\d+(?:\.\d{1,3})?$/.test(amount) || !Number.isFinite(Number(amount)) || Number(amount) <= 0) {
-        quantity.setCustomValidity('Lütfen sıfırdan büyük bir kilogram miktarı yazın. Örneğin: 2 veya 1,5.');
+      if (!/^\d+(?:\.\d{1,3})?$/.test(amount) || !Number.isFinite(Number(amount)) || Number(amount) < 1) {
+        quantity.setCustomValidity('Minimum sipariş miktarı 1 kg’dır. Lütfen 1 kg veya daha fazla yazın.');
         quantity.reportValidity(); return;
       }
       let digits = phone.value.replace(/[\s()+.-]/g, '');
@@ -86,6 +86,7 @@
         'Blok: ' + block.value.trim(),
         'Daire: ' + apartment.value.trim(),
         'Telefon: 0' + digits,
+        'Teslim tarihi: ' + document.getElementById('delivery-date').value,
         'Teslimat saati tercihi: ' + document.getElementById('delivery').value
       ].join('\n');
       window.location.assign('https://wa.me/905335695755?text=' + encodeURIComponent(message));
