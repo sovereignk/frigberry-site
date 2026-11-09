@@ -16,7 +16,7 @@
     .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font:600 24px 'Fraunces',Georgia,serif}.brand img{width:44px;height:44px;object-fit:contain;border-radius:50%}.home{font-size:14px;text-underline-offset:4px}
     main{max-width:1080px;margin:auto;padding:64px 28px 80px;display:grid;grid-template-columns:.85fr 1.15fr;gap:70px;align-items:start}
     .eyebrow{font-size:13px;letter-spacing:.1em;font-weight:600;color:var(--forest);text-transform:uppercase}h1{font:500 clamp(19px,2.5vw,28px)/1.12 'Fraunces',Georgia,serif;color:var(--plum);margin:18px 0 24px}p{margin:0 0 20px}.intro{font-size:18px;color:var(--muted)}.steps{margin:32px 0;padding-left:24px;color:var(--muted)}.steps li{padding:2.5px 0}.contact{padding-top:24px;border-top:1px solid #3d1a3a20;font-size:14px;color:var(--muted)}.contact a{font-weight:500}.mobile-contact{display:none}.mobile-contact a{display:inline-block;padding:8px 0;font-size:16px;font-weight:600;text-underline-offset:4px}
-    .card{background:#fff;border:1px solid #3d1a3a1c;border-radius:12px;padding:32px;box-shadow:0 12px 40px #3d1a3a08}h2{font:500 26px 'Fraunces',Georgia,serif;color:var(--plum);margin:0 0 6px}.hint{font-size:13px;color:var(--muted);margin-bottom:24px}.fields{display:grid;grid-template-columns:1fr 1fr;gap:20px}.wide{grid-column:1/-1}label{display:block;font-weight:500;margin-bottom:7px;font-size:14px}.optional{font-size:12px;font-weight:400;color:var(--muted)}input,select{width:100%;min-height:50px;padding:12px 14px;border:1px solid #cfc7cf;border-radius:6px;background:white;color:var(--ink);font:inherit}input::placeholder{color:#817783}input:focus-visible,select:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid #7a2e6360;outline-offset:3px}input:focus,select:focus{border-color:var(--berry)}.help{font-size:12px;color:var(--muted);margin:7px 0 0}
+    .card{background:#fff;border:1px solid #3d1a3a1c;border-radius:12px;padding:32px;box-shadow:0 12px 40px #3d1a3a08}h2{font:500 26px 'Fraunces',Georgia,serif;color:var(--plum);margin:0 0 6px}.hint{font-size:13px;color:var(--muted);margin-bottom:24px}.fields{display:grid;grid-template-columns:1fr 1fr;gap:20px}.wide{grid-column:1/-1}label{display:block;font-weight:500;margin-bottom:7px;font-size:14px}.optional{font-size:12px;font-weight:400;color:var(--muted)}input,select,textarea{width:100%;min-height:50px;padding:12px 14px;border:1px solid #cfc7cf;border-radius:6px;background:white;color:var(--ink);font:inherit}textarea{resize:vertical;display:block}input::placeholder{color:#817783}input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid #7a2e6360;outline-offset:3px}input:focus,select:focus,textarea:focus{border-color:var(--berry)}.help{font-size:12px;color:var(--muted);margin:7px 0 0}
     button{width:100%;margin-top:26px;min-height:54px;padding:14px;border:0;border-radius:6px;background:var(--plum);color:white;font:600 16px 'Work Sans',Arial,sans-serif;cursor:pointer}button:hover{background:var(--berry)}.note{font-size:13px;line-height:1.6;color:var(--muted);margin:14px 0 0;text-align:center}.error{color:#a32132;font-size:14px;margin:16px 0 0}.error:empty{display:none}footer{border-top:1px solid #3d1a3a16;padding:24px;text-align:center;color:var(--muted);font-size:12px}
     @media(max-width:760px){nav{padding:14px 20px}main{grid-template-columns:1fr;gap:24px;padding:34px 20px 48px}.intro{font-size:16px}.steps{margin:18px 0}.contact{display:none}.mobile-contact{display:block;margin:0 0 12px}h1{margin:12px 0 16px}.card{padding:24px}.brand{font-size:22px}}
     @media(max-width:380px){.card{padding:20px}.fields{gap:16px;grid-template-columns:1fr}.wide{grid-column:auto}}
@@ -26,21 +26,20 @@
   <header><nav aria-label="Ana gezinme"><a class="brand" href="/"><img src="/frigberry-logo.jpg" alt="" width="44" height="44">Frigberry</a><a class="home" href="/">Ana sayfa</a></nav></header>
   <main>
     <section aria-labelledby="page-title">
-      <span class="eyebrow">Kentplus Komşularımıza özel</span>
       <h1 id="page-title">Aronya siparişleriniz<br>bir mesaj uzağınızda.</h1>
       <ol class="steps"><li>Sipariş bilgilerinizi doldurun.</li><li>Hazır mesajınızı WhatsApp'ta gönderin.</li><li>Teslimatı birlikte teyit edelim.</li></ol>
     </section>
     <section class="card" aria-labelledby="form-title">
       <h2 id="form-title">Sipariş bilgileri</h2>
-      <p class="hint">Teslimat saati dışındaki tüm alanlar zorunludur.</p>
+      <p class="hint">Tüm alanlar zorunludur.</p>
       <form id="order-form" action="https://wa.me/905335695755" method="get">
         <div class="fields">
-          <div class="wide"><label for="quantity">Sipariş miktarı (kg)</label><input id="quantity" name="quantity" type="text" inputmode="decimal" placeholder="Örn. 2 veya 1,5" maxlength="12" required aria-describedby="quantity-help"><p class="help" id="quantity-help">Minimum sipariş 1 kg’dır. Taze(Salkım) Kilogram fiyatı: 300 TL.</p><p style="margin:14px 0 0;color:var(--plum);font-weight:600">Toplam tutar: <output id="order-total" for="quantity" aria-live="polite" aria-atomic="true">—</output></p></div>
+          <div class="wide"><label for="quantity">Sipariş miktarı (kg)</label><input id="quantity" name="quantity" type="text" inputmode="decimal" placeholder="Örn. 2 veya 1,5" maxlength="12" required aria-describedby="quantity-help"><p class="help" id="quantity-help">Minimum sipariş 1 kg’dır. Taze (Salkım) Kilogram Fiyatı 300 TL (+Kargo Ücreti).</p><p style="margin:14px 0 0;color:var(--plum);font-weight:600">Ürün toplamı (kargo hariç): <output id="order-total" for="quantity" aria-live="polite" aria-atomic="true">—</output></p></div>
+          <div class="wide"><label for="recipient">Alıcı adı ve soyadı</label><input id="recipient" name="recipient" type="text" autocomplete="name" maxlength="100" required></div>
+          <div class="wide"><label for="address">Teslimat adresi</label><textarea id="address" name="address" autocomplete="street-address" rows="3" maxlength="500" required></textarea></div>
           <div><label for="block">Blok numarası</label><input id="block" name="block" type="text" placeholder="Örn. A veya 3" maxlength="40" required></div>
           <div><label for="apartment">Daire numarası</label><input id="apartment" name="apartment" type="text" placeholder="Örn. 12" maxlength="20" required></div>
           <div class="wide"><label for="phone">Telefon numarası</label><input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="05xx xxx xx xx" maxlength="25" required aria-describedby="phone-help"><p class="help" id="phone-help">Size ulaşabileceğimiz cep telefonu numarası.</p></div>
-          <div class="wide"><label for="delivery-date">Teslim tarihi</label><select id="delivery-date" name="delivery-date" required><option value="" disabled selected>Tarih seçin</option><option value="19 Ekim 2026">19 Ekim</option><option value="20 Ekim 2026">20 Ekim</option><option value="21 Ekim 2026">21 Ekim</option><option value="22 Ekim 2026">22 Ekim</option><option value="23 Ekim 2026">23 Ekim</option><option value="24 Ekim 2026">24 Ekim</option></select></div>
-          <div class="wide"><label for="delivery">Teslimat saati tercihi <span class="optional">(isteğe bağlı)</span></label><select id="delivery" name="delivery"><option value="Fark etmez">Fark etmez</option><option>08:00–10:00</option><option>10:00–12:00</option><option>12:00–14:00</option><option>14:00–16:00</option><option>16:00–18:00</option><option>18:00–20:00</option><option>20:00–22:00</option></select><p class="help">Teslimat tarihi ve saati WhatsApp üzerinden teyit edilecektir.</p></div>
         </div>
         <p id="form-error" class="error" role="alert"></p>
         <button type="submit">Siparişi İlet</button>
@@ -89,18 +88,20 @@
       }
       const block = document.getElementById('block');
       const apartment = document.getElementById('apartment');
-      for (const field of [block, apartment]) {
+      const recipient = document.getElementById('recipient');
+      const address = document.getElementById('address');
+      for (const field of [recipient, address, block, apartment]) {
         if (!field.value.trim()) { field.setCustomValidity('Lütfen bu alanı doldurun.'); field.reportValidity(); return; }
       }
       if (!form.reportValidity()) return;
       const message = [
         'Merhaba, Frigberry aronya siparişi vermek istiyorum.', '',
-        'Miktar: ' + Number(amount).toLocaleString('tr-TR', { maximumFractionDigits: 3 }) + ' kg — Toplam tutar: ' + formatPrice(Number(amount) * pricePerKg),
+        'Miktar: ' + Number(amount).toLocaleString('tr-TR', { maximumFractionDigits: 3 }) + ' kg — Ürün toplamı (kargo hariç): ' + formatPrice(Number(amount) * pricePerKg),
+        'Alıcı adı ve soyadı: ' + recipient.value.trim(),
+        'Teslimat adresi: ' + address.value.trim(),
         'Blok: ' + block.value.trim(),
         'Daire: ' + apartment.value.trim(),
-        'Telefon: 0' + digits,
-        'Teslim tarihi: ' + document.getElementById('delivery-date').value,
-        'Teslimat saati tercihi: ' + document.getElementById('delivery').value
+        'Telefon: 0' + digits
       ].join('\n');
       window.location.assign('https://wa.me/905335695755?text=' + encodeURIComponent(message));
     });
