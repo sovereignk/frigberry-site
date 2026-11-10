@@ -37,8 +37,8 @@
           <div class="wide"><label for="quantity">Sipariş miktarı (kg)</label><input id="quantity" name="quantity" type="text" inputmode="decimal" placeholder="Örn. 2 veya 1,5" maxlength="12" required aria-describedby="quantity-help"><p class="help" id="quantity-help">Minimum sipariş 1 kg’dır. Taze (Salkım) Kilogram Fiyatı 300 TL (+Kargo Ücreti).</p><p style="margin:14px 0 0;color:var(--plum);font-weight:600">Ürün toplamı (kargo hariç): <output id="order-total" for="quantity" aria-live="polite" aria-atomic="true">—</output></p></div>
           <div class="wide"><label for="recipient">Alıcı adı ve soyadı</label><input id="recipient" name="recipient" type="text" autocomplete="name" maxlength="100" required></div>
           <div class="wide"><label for="address">Teslimat adresi</label><textarea id="address" name="address" autocomplete="street-address" rows="3" maxlength="500" required></textarea></div>
-          <div><label for="block">Blok numarası</label><input id="block" name="block" type="text" placeholder="Örn. A veya 3" maxlength="40" required></div>
-          <div><label for="apartment">Daire numarası</label><input id="apartment" name="apartment" type="text" placeholder="Örn. 12" maxlength="20" required></div>
+          <div><label for="district">İlçe</label><input id="district" name="district" type="text" placeholder="Örn. Odunpazarı" maxlength="60" required></div>
+          <div><label for="province">İl</label><input id="province" name="province" type="text" autocomplete="address-level1" placeholder="Örn. Eskişehir" maxlength="60" required></div>
           <div class="wide"><label for="phone">Telefon numarası</label><input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="05xx xxx xx xx" maxlength="25" required aria-describedby="phone-help"><p class="help" id="phone-help">Size ulaşabileceğimiz cep telefonu numarası.</p></div>
         </div>
         <p id="form-error" class="error" role="alert"></p>
@@ -86,11 +86,11 @@
         phone.setCustomValidity('Lütfen geçerli bir cep telefonu numarası yazın. Örneğin: 0533 123 45 67.');
         phone.reportValidity(); return;
       }
-      const block = document.getElementById('block');
-      const apartment = document.getElementById('apartment');
+      const district = document.getElementById('district');
+      const province = document.getElementById('province');
       const recipient = document.getElementById('recipient');
       const address = document.getElementById('address');
-      for (const field of [recipient, address, block, apartment]) {
+      for (const field of [recipient, address, district, province]) {
         if (!field.value.trim()) { field.setCustomValidity('Lütfen bu alanı doldurun.'); field.reportValidity(); return; }
       }
       if (!form.reportValidity()) return;
@@ -99,8 +99,8 @@
         'Miktar: ' + Number(amount).toLocaleString('tr-TR', { maximumFractionDigits: 3 }) + ' kg — Ürün toplamı (kargo hariç): ' + formatPrice(Number(amount) * pricePerKg),
         'Alıcı adı ve soyadı: ' + recipient.value.trim(),
         'Teslimat adresi: ' + address.value.trim(),
-        'Blok: ' + block.value.trim(),
-        'Daire: ' + apartment.value.trim(),
+        'İlçe: ' + district.value.trim(),
+        'İl: ' + province.value.trim(),
         'Telefon: 0' + digits
       ].join('\n');
       window.location.assign('https://wa.me/905335695755?text=' + encodeURIComponent(message));
